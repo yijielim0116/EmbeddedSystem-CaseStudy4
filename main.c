@@ -26,14 +26,16 @@
  */
 osThreadId tid_BlowerSpeedCtrlThread;
 osThreadId tid_BlowerTestThread;
+
 osThreadId tid_AdcVoltageThread;
+
+osThreadDef ( runBlowerSpeedCtrl, osPriorityHigh, 1, 512);
+osThreadDef ( runBlowerTest, osPriorityNormal, 1, 1024);
+osThreadDef ( runAdcVoltage, osPriorityLow, 1, 1024);
 
 osMessageQDef(message_q, 5, uint32_t);   //Declare a message queue
 osMessageQId message_q_id;               //Declare an ID for the message queue
 
-osThreadDef ( runBlowerSpeedCtrl, osPriorityNormal, 1, 1024);
-osThreadDef ( runBlowerTest, osPriorityNormal, 1, 1024);
-osThreadDef ( runAdcVoltage, osPriorityLow, 1, 1024);
 
 int main(void)
 {
